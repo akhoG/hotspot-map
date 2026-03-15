@@ -1,3 +1,8 @@
+export const PACKAGES = [
+  { id: 'time_15', label: '15 Minutes', type: 'time',  value: 15, priceSol: 0.01  },
+  { id: 'data_50', label: '50 MB',      type: 'data',  value: 50, priceSol: 0.005 },
+];
+
 export const HOTSPOTS = [
   { id: 'tbilisi-01', name: 'Freedom Square', lat: 41.6941, lng: 44.8033, address: 'Freedom Square, Tbilisi', walletAddress: '3nn61ampXhSCq9fWk4DfQMa4DAR8JwvndAbEyyqN7r5K' },
   { id: 'tbilisi-02', name: 'Rustaveli Avenue', lat: 41.6956, lng: 44.7998, address: 'Rustaveli Ave, Tbilisi', walletAddress: '3nn61ampXhSCq9fWk4DfQMa4DAR8JwvndAbEyyqN7r5K' },

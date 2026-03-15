@@ -1,36 +1,21 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useWallet } from '@solana/wallet-adapter-react';
 import Map from './components/Map';
 import HotspotDrawer from './components/HotspotDrawer';
 import SessionStatus from './components/SessionStatus';
+import { HOTSPOTS, PACKAGES } from './config/hotspots';
 import HomeScreen from './screens/HomeScreen';
 import StatsScreen from './screens/StatsScreen';
 import WalletScreen from './screens/WalletScreen';
 import RewardsScreen from './screens/RewardsScreen';
 
-const API_BASE = '';
 
 export default function App() {
   const { publicKey } = useWallet();
   const [screen, setScreen] = useState('home'); // home | map | stats | wallet
   const [selectedHotspot, setSelectedHotspot] = useState(null);
-  const [hotspots, setHotspots] = useState([]);
-  const [packages, setPackages] = useState([]);
-
-  useEffect(() => {
-    fetch(`${API_BASE}/api/hotspots`)
-      .then(r => r.json())
-      .then(data => {
-        setHotspots(data);
-        if (data.length > 0) setPackages(data[0].packages);
-      })
-      .catch(err => console.error('Failed to load hotspots:', err));
-  }, []);
-
   function handleSelectHotspot(hotspot) {
     setSelectedHotspot(hotspot);
-    const found = hotspots.find(h => h.id === hotspot.id);
-    if (found) setPackages(found.packages);
   }
 
   return (
@@ -73,7 +58,7 @@ export default function App() {
             <div className="absolute bottom-0 left-0 right-0 z-[1000]">
               <HotspotDrawer
                 hotspot={selectedHotspot}
-                packages={packages}
+                packages={PACKAGES}
                 onClose={() => setSelectedHotspot(null)}
               />
             </div>
