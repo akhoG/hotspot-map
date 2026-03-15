@@ -2,11 +2,11 @@ const { Connection, PublicKey, LAMPORTS_PER_SOL } = require('@solana/web3.js');
 const router = require('express').Router();
 
 const RPC_URL = process.env.SOLANA_RPC_URL || 'https://api.devnet.solana.com';
-const connection = new Connection(RPC_URL, 'confirmed');
 
 router.post('/', async (req, res) => {
   const { walletAddress } = req.body;
   if (!walletAddress) return res.status(400).json({ error: 'walletAddress required' });
+  const connection = new Connection(RPC_URL, 'confirmed');
 
   let pubkey;
   try {

@@ -5,10 +5,10 @@ const firewall = require('../firewall');
 const config   = require('../config');
 
 const RPC_URL = process.env.SOLANA_RPC_URL || 'https://api.devnet.solana.com';
-const connection = new Connection(RPC_URL, 'confirmed');
 
 router.post('/activate', async (req, res) => {
   try {
+    const connection = new Connection(RPC_URL, 'confirmed');
     const { hotspotId, packageId, txSignature, walletAddress } = req.body;
 
     const pkg     = config.packages.find(p => p.id === packageId);
